@@ -10,6 +10,7 @@ Window.Title = "Localization Testing"
 
 canAccess, result = pcall(function() return game.LocalizationService.RobloxForcePlayModeRobloxLocaleId end)
 
+local params
 if canAccess then
 	local Localization = game:GetService("LocalizationService")
 	params = {
