@@ -20,14 +20,23 @@ if canAccess then
 		InitialGameLocaleId = game.LocalizationService.RobloxForcePlayModeGameLocaleId,
 	}
 else
+    --[[DEBUG CODE]]
 	local test_gameLocaleId = "en-us"
 	local test_robloxLocaleId = "en-us"
 	params = {
-		SetRobloxLocaleId = function(localeId) test_robloxLocaleId = localeId end,
-		SetGameLocaleId = function(localeId) test_gameLocaleId = localeId end,
+		Window = Window,
+		SetRobloxLocaleId = function(localeId)
+			print("setting roblox locale to "..localeId)
+			test_robloxLocaleId = localeId
+		end,
+		SetGameLocaleId = function(localeId)
+			print("setting game locale to "..localeId)
+			test_gameLocaleId = localeId
+		end,
 		InitialRobloxLocaleId = test_robloxLocaleId,
 		InitialGameLocaleId = test_gameLocaleId,
 	}
+    --[[END DEBUG CODE]]
 end
 
 Roact.mount(Roact.createElement(PlayerLocaleView, params), Window)

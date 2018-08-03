@@ -7,17 +7,17 @@ local PlayerLocaleView = Roact.Component:extend("PlayerLocaleView")
 function PlayerLocaleView:render()
 	return Roact.createElement("Frame", {
 			Size = UDim2.new(0, 300, 0, 70),
-			BackgroundTransparency = 1.0,
+			BackgroundTransparency = 1,
 			BorderSizePixel = 0,
 		}, {
 			Layout = Roact.createElement("UIListLayout", {
 				SortOrder = Enum.SortOrder.LayoutOrder,
 				FillDirection = Enum.FillDirection.Vertical,
-				Padding = UDim.new(0,5)
+				Padding = UDim.new(0, 5)
 			}),
 
 			Padding = Roact.createElement("UIPadding", {
-				PaddingTop = UDim.new(0,10)
+				PaddingTop = UDim.new(0, 10)
 			}),
 
 			Roblox = Roact.createElement(LabeledLocaleSelector, {

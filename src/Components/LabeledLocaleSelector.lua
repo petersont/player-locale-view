@@ -7,9 +7,9 @@ local LabeledLocaleSelector = Roact.Component:extend("LabeledLocaleSelector")
 function LabeledLocaleSelector:render()
 	return Roact.createElement("Frame", {
 			Size = UDim2.new(0, 300, 0, 25),
-			BackgroundTransparency = 1.0,
+			BackgroundTransparency = 1,
 			BorderSizePixel = 0,
-			LayoutOrder = self.props.LayoutOrder,
+			LayoutOrder = self.props.LayoutOrder
 		}, {
 			Layout = Roact.createElement("UIListLayout", {
 				SortOrder = Enum.SortOrder.LayoutOrder,
@@ -21,7 +21,7 @@ function LabeledLocaleSelector:render()
 				Text = self.props.LabelText,
 				TextXAlignment = "Right",
 				TextYAlignment = "Center",
-				BackgroundTransparency = 1.0,
+				BackgroundTransparency = 1,
 				BorderSizePixel = 0,
 				Size = UDim2.new(0, 50, 0, 25),
 				LayoutOrder = 0
