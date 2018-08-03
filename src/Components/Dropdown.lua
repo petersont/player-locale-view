@@ -21,7 +21,7 @@ function Dropdown:render()
 			LayoutOrder = index,
 			BorderSizePixel = 0,
 			BackgroundColor3 = Color3.new(1, 1, 1),
-			ZIndex = 2,
+			ZIndex = 3,
 		}, {
 			Padding = Roact.createElement("UIPadding", {
 				PaddingBottom = UDim.new(0, 4),
@@ -32,7 +32,7 @@ function Dropdown:render()
 				Size = UDim2.new(1, 0, 1, 0),
 				Text = "",
 				BackgroundColor3 = Color3.new(1, 1, 1),
-				ZIndex = 2,
+				ZIndex = 3,
 
 				[Roact.Event.Activated] = function()
 					listItem.OnActivated()
@@ -48,7 +48,7 @@ function Dropdown:render()
 					BackgroundTransparency = 1,
 					Size = UDim2.new(1, 0, 1, 0),
 					Text = listItem.Text,
-					ZIndex = 2,
+					ZIndex = 3,
 					TextXAlignment = Enum.TextXAlignment.Left,
 				})
 			}),
@@ -56,14 +56,25 @@ function Dropdown:render()
 	end
 
 	local menu
+	local hackScreen
 	local button
 
 	if self.state.open then
+		hackScreen = Roact.createElement("TextButton", {
+			Position = UDim2.new(0, -1000000, 0, -1000000),
+			Size = UDim2.new(0, 2000000, 0, 2000000),
+			BackgroundColor3 = Color3.new(1, 0, 0),
+			BackgroundTransparency = 1.0,
+			Text = "",
+			AutoButtonColor = false,
+			ZIndex = 2,
+		})
+
 		menu = Roact.createElement("Frame", {
-			Size = UDim2.new(1, 0, 0, self.props.ListItemHeight * self.props.ListSize),
+			Size = UDim2.new(1, 0, 0, #(self.props.ListItems) * self.props.ListItemHeight),
 			BorderColor3 = Color3.new(0, 0, 0),
 			BackgroundColor3 = Color3.new(1, 1, 1),
-			ZIndex = 2,
+			ZIndex = 3,
 		}, listChildren)
 	else
 		button = Roact.createElement("TextButton", {
@@ -73,7 +84,7 @@ function Dropdown:render()
 
 			[Roact.Event.Activated] = function()
 				self:setState( {open = true} )
-			end,
+			end
 		})
 	end
 
@@ -82,6 +93,7 @@ function Dropdown:render()
 		BackgroundColor3 = Color3.new(1, 1, 1)
 	}, {
 		button = button,
+		hackScreen = hackScreen,
 		menu = menu,
 	})
 end

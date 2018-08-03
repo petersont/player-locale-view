@@ -8,9 +8,6 @@ local Roact = require(script.Parent.Parent.Roact)
 local Window = plugin:CreateDockWidgetPluginGui("LocalizationTesting", DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left))
 Window.Title = "Localization Testing"
 
-local game_LocalizationService_RobloxForcePlayModeRobloxLocaleId = "en-us"
-local game_LocalizationService_RobloxForcePlayModeGameLocaleId = "en-us"
-
 canAccess, result = pcall(function() return game.LocalizationService.RobloxForcePlayModeRobloxLocaleId end)
 
 local params
@@ -23,11 +20,13 @@ if canAccess then
         InitialGameLocaleId = game.LocalizationService.RobloxForcePlayModeGameLocaleId,
     }
 else
+    local test_gameLocaleId = "en-us"
+    local test_robloxLocaleId = "en-us"
     params = {
-        SetRobloxLocaleId = function(localeId) game_LocalizationService_RobloxForcePlayModeRobloxLocaleId = localeId end,
-        SetGameLocaleId = function(localeId) game_LocalizationService_RobloxForcePlayModeGameLocaleId = localeId end,
-        InitialRobloxLocaleId = game_LocalizationService_RobloxForcePlayModeRobloxLocaleId,
-        InitialGameLocaleId = game_LocalizationService_RobloxForcePlayModeGameLocaleId,
+        SetRobloxLocaleId = function(localeId) test_robloxLocaleId = localeId end,
+        SetGameLocaleId = function(localeId) test_gameLocaleId = localeId end,
+        InitialRobloxLocaleId = test_robloxLocaleId,
+        InitialGameLocaleId = test_gameLocaleId,
     }
 end
 

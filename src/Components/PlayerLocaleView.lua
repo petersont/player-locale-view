@@ -22,14 +22,14 @@ function PlayerLocaleView:render()
 
             Roblox = Roact.createElement(LabeledLocaleSelector, {
                 LabelText = "Roblox",
-                InitLocaleId = self.props.InitialRobloxLocaleId,
+                InitialLocaleId = self.props.InitialRobloxLocaleId,
                 SetLocaleId = self.props.SetRobloxLocaleId,
                 LayoutOrder = 0
             }),
 
             Game = Roact.createElement(LabeledLocaleSelector, {
                 LabelText = "Game",
-                InitLocaleId = self.props.InitialGameLocaleId,
+                InitialLocaleId = self.props.InitialGameLocaleId,
                 SetLocaleId = self.props.SetGameLocaleId,
                 LayoutOrder = 1
             }),

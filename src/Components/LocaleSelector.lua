@@ -74,14 +74,13 @@ function LocaleSelector:render()
             Dropdown = Roact.createElement(Dropdown, {
                 CurrentText = getMenuTextForLocale(self.state.localeId),
                 OnClosed = function() end,
-                ListItemHeight = 30,
-                ListItems = ListItems,
-                ListSize = #ListItems
+                ListItemHeight = 25,
+                ListItems = ListItems
             }),
         }),
 
         LocaleIdTextBox = Roact.createElement("Frame", {
-            Size = UDim2.new(0, 40, 0, 25),
+            Size = UDim2.new(0, 50, 0, 25),
             BorderSizePixel = 1,
             BackgroundColor3 = Color3.new(1, 1, 1),
             LayoutOrder = 1,
