@@ -1,0 +1,15 @@
+{
+  "name": "Ensign",
+  "servePort": 8000,
+  "partitions": {
+    "src": {
+      "path" : "src",
+      "target" : "ReplicatedStorage.LocalizationPlugin.Plugin"
+    },
+    "roact": {
+      "path" : "roact/lib",
+      "target" : "ReplicatedStorage.LocalizationPlugin.Roact"
+    }
+  }
+}
+
