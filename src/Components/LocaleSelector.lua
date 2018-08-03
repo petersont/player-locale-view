@@ -74,7 +74,6 @@ function LocaleSelector:render()
 			Dropdown = Roact.createElement(Dropdown, {
 				Window = self.props.Window,
 				CurrentText = getMenuTextForLocale(self.state.localeId),
-				OnClosed = function() end,
 				ListItemHeight = 25,
 				ListItems = ListItems
 			}),

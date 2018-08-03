@@ -24,8 +24,14 @@ else
 	local test_robloxLocaleId = "en-us"
 	params = {
 		Window = Window,
-		SetRobloxLocaleId = function(localeId) test_robloxLocaleId = localeId end,
-		SetGameLocaleId = function(localeId) test_gameLocaleId = localeId end,
+		SetRobloxLocaleId = function(localeId)
+			print("setting roblox locale to "..localeId)
+			test_robloxLocaleId = localeId
+		end,
+		SetGameLocaleId = function(localeId)
+			print("setting game locale to "..localeId)
+			test_gameLocaleId = localeId
+		end,
 		InitialRobloxLocaleId = test_robloxLocaleId,
 		InitialGameLocaleId = test_gameLocaleId,
 	}

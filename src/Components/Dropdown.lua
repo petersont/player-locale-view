@@ -37,8 +37,9 @@ function Dropdown:render()
 
 				[Roact.Event.Activated] = function()
 					listItem.OnActivated()
-					self:setState( {open = false} )
-					self.props.OnClosed()
+					self:setState({
+						open = false
+					})
 				end,
 			}, {
 				Padding = Roact.createElement("UIPadding", {
@@ -56,45 +57,47 @@ function Dropdown:render()
 		})
 	end
 
-	local menu
-	local curtain
-	local button
+	local visibleChildren
 
 	if self.state.open then
-		curtain = Roact.createElement(Curtain, {
-			Window = self.props.Window,
-			OnClosed = function()
-				self:setState( {open = false} )
-			end,
-			ZIndex = 2,
-		})
+		visibleChildren = {
+			curtain = Roact.createElement(Curtain, {
+				Window = self.props.Window,
+				OnClosed = function()
+					self:setState({
+						open = false
+					})
+				end,
+				ZIndex = 2,
+			}),
 
-		menu = Roact.createElement("Frame", {
-			Size = UDim2.new(1, 0, 0, #(self.props.ListItems) * self.props.ListItemHeight),
-			BorderColor3 = Color3.new(0, 0, 0),
-			BackgroundColor3 = Color3.new(1, 1, 1),
-			ZIndex = 3,
-		}, listChildren)
+			menu = Roact.createElement("Frame", {
+				Size = UDim2.new(1, 0, 0, #(self.props.ListItems) * self.props.ListItemHeight),
+				BorderColor3 = Color3.new(0, 0, 0),
+				BackgroundColor3 = Color3.new(1, 1, 1),
+				ZIndex = 3,
+			}, listChildren)
+		}
 	else
-		button = Roact.createElement("TextButton", {
-			Size = UDim2.new(1, 0, 1, 0),
-			BackgroundTransparency = 1,
-			Text = self.props.CurrentText,
+		visibleChildren = {
+			button = Roact.createElement("TextButton", {
+				Size = UDim2.new(1, 0, 1, 0),
+				BackgroundTransparency = 1,
+				Text = self.props.CurrentText,
 
-			[Roact.Event.Activated] = function()
-				self:setState( {open = true} )
-			end
-		})
+				[Roact.Event.Activated] = function()
+					self:setState({
+						open = true
+					})
+				end
+			})
+		}
 	end
 
 	return Roact.createElement("Frame", {
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundColor3 = Color3.new(1, 1, 1)
-	}, {
-		button = button,
-		curtain = curtain,
-		menu = menu,
-	})
+	}, visibleChildren)
 end
 
 return Dropdown
