@@ -36,8 +36,9 @@ function Dropdown:render()
 
 				[Roact.Event.Activated] = function()
 					listItem.OnActivated()
-					self:setState( {open = false} )
-					self.props.OnClosed()
+					self:setState({
+						open = false
+					})
 				end,
 			}, {
 				Padding = Roact.createElement("UIPadding", {
@@ -72,7 +73,9 @@ function Dropdown:render()
 			Text = self.props.CurrentText,
 
 			[Roact.Event.Activated] = function()
-				self:setState( {open = true} )
+				self:setState({
+					open = true
+				})
 			end
 		})
 	end
