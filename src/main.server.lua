@@ -21,6 +21,7 @@ if canAccess then
 		InitialGameLocaleId = game.LocalizationService.RobloxForcePlayModeGameLocaleId,
 	}
 else
+    --[[DEBUG CODE]]
 	local test_gameLocaleId = "en-us"
 	local test_robloxLocaleId = "en-us"
 	params = {
@@ -36,6 +37,7 @@ else
 		InitialRobloxLocaleId = test_robloxLocaleId,
 		InitialGameLocaleId = test_gameLocaleId,
 	}
+    --[[END DEBUG CODE]]
 end
 
 Roact.mount(Roact.createElement(PlayerLocaleView, params), Window)
