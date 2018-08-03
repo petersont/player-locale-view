@@ -1,5 +1,5 @@
 local Roact = require(script.Parent.Parent.Parent.Roact)
-local Curtain = require(script.Parent.Curtain)
+local Modalifier = require(script.Parent.Modalifier)
 
 local Dropdown = Roact.Component:extend("Dropdown")
 
@@ -61,22 +61,23 @@ function Dropdown:render()
 
 	if self.state.open then
 		visibleChildren = {
-			curtain = Roact.createElement(Curtain, {
+			modalifier = Roact.createElement(Modalifier, {
 				Window = self.props.Window,
+				ZIndex = 2,
 				OnClosed = function()
 					self:setState({
 						open = false
 					})
 				end,
-				ZIndex = 2,
-			}),
-
-			menu = Roact.createElement("Frame", {
-				Size = UDim2.new(1, 0, 0, #(self.props.ListItems) * self.props.ListItemHeight),
-				BorderColor3 = Color3.new(0, 0, 0),
-				BackgroundColor3 = Color3.new(1, 1, 1),
-				ZIndex = 3,
-			}, listChildren)
+				Render = function()
+					return Roact.createElement("Frame", {
+						Size = UDim2.new(1, 0, 0, #(self.props.ListItems) * self.props.ListItemHeight),
+						BorderColor3 = Color3.new(0, 0, 0),
+						BackgroundColor3 = Color3.new(1, 1, 1),
+						ZIndex = 3,
+					}, listChildren)
+				end
+			})
 		}
 	else
 		visibleChildren = {

@@ -12,6 +12,7 @@ function Curtain:render()
 		Curtain = Roact.createElement("TextButton", {
 			Size = UDim2.new(1, 0, 1, 0),
 			BackgroundTransparency = 1,
+			BorderSizePixel = 0,
 			ZIndex = self.props.ZIndex,
 
 			[Roact.Event.Activated] = function()
