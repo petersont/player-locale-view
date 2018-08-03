@@ -1,6 +1,5 @@
-local Roact = require(script.Parent.Parent.Roact)
+local Roact = require(script.Parent.Parent.Parent.Roact)
 
-local LocaleNames = require(script.Parent.LocaleNames)
 local Dropdown = require(script.Parent.Dropdown)
 local LocaleSelector = Roact.Component:extend("LocaleSelector")
 

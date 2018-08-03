@@ -1,12 +1,9 @@
 local Toolbar = plugin:CreateToolbar("Player Locale")
 local Button = Toolbar:CreateButton("Hide/Show", "", "")
 
-local PlayerLocaleView = require(script.Parent.PlayerLocaleView)
-local LabeledLocaleSelector = require(script.Parent.LabeledLocaleSelector)
+local PlayerLocaleView = require(script.Parent.Components.PlayerLocaleView)
 
 local Roact = require(script.Parent.Parent.Roact)
-
-local Localization = game:GetService("LocalizationService")
 
 local Window = plugin:CreateDockWidgetPluginGui("LocalizationTesting", DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left))
 Window.Title = "Localization Testing"
@@ -18,6 +15,7 @@ canAccess, result = pcall(function() return game.LocalizationService.RobloxForce
 
 local params
 if canAccess then
+    local Localization = game:GetService("LocalizationService")
     params = {
         SetRobloxLocaleId = function(localeId) game.LocalizationService.RobloxForcePlayModeRobloxLocaleId = localeId end,
         SetGameLocaleId = function(localeId) game.LocalizationService.RobloxForcePlayModeGameLocaleId = localeId end,

@@ -1,4 +1,4 @@
-local Roact = require(script.Parent.Parent.Roact)
+local Roact = require(script.Parent.Parent.Parent.Roact)
 
 local LocaleSelector = require(script.Parent.LocaleSelector)
 
