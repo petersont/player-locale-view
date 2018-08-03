@@ -1,4 +1,5 @@
 local Roact = require(script.Parent.Parent.Parent.Roact)
+local Curtain = require(script.Parent.Curtain)
 
 local Dropdown = Roact.Component:extend("Dropdown")
 
@@ -56,9 +57,18 @@ function Dropdown:render()
 	end
 
 	local menu
+	local curtain
 	local button
 
 	if self.state.open then
+		curtain = Roact.createElement(Curtain, {
+			Window = self.props.Window,
+			OnClosed = function()
+				self:setState( {open = false} )
+			end,
+			ZIndex = 2,
+		})
+
 		menu = Roact.createElement("Frame", {
 			Size = UDim2.new(1, 0, 0, #(self.props.ListItems) * self.props.ListItemHeight),
 			BorderColor3 = Color3.new(0, 0, 0),
@@ -82,6 +92,7 @@ function Dropdown:render()
 		BackgroundColor3 = Color3.new(1, 1, 1)
 	}, {
 		button = button,
+		curtain = curtain,
 		menu = menu,
 	})
 end
