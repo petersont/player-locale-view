@@ -56,20 +56,9 @@ function Dropdown:render()
 	end
 
 	local menu
-	local hackScreen
 	local button
 
 	if self.state.open then
-		hackScreen = Roact.createElement("TextButton", {
-			Position = UDim2.new(0, -1000000, 0, -1000000),
-			Size = UDim2.new(0, 2000000, 0, 2000000),
-			BackgroundColor3 = Color3.new(1, 0, 0),
-			BackgroundTransparency = 1.0,
-			Text = "",
-			AutoButtonColor = false,
-			ZIndex = 2,
-		})
-
 		menu = Roact.createElement("Frame", {
 			Size = UDim2.new(1, 0, 0, #(self.props.ListItems) * self.props.ListItemHeight),
 			BorderColor3 = Color3.new(0, 0, 0),
@@ -93,7 +82,6 @@ function Dropdown:render()
 		BackgroundColor3 = Color3.new(1, 1, 1)
 	}, {
 		button = button,
-		hackScreen = hackScreen,
 		menu = menu,
 	})
 end
