@@ -2,9 +2,6 @@ local Roact = require(script.Parent.Parent.Parent.Roact)
 
 local Curtain = Roact.Component:extend("Curtain")
 
-function Curtain:init()
-end
-
 function Curtain:render()
 	return Roact.createElement(Roact.Portal, {
 		target = self.props.Window,
