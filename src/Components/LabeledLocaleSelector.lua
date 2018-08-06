@@ -4,6 +4,9 @@ local LocaleSelector = require(script.Parent.LocaleSelector)
 
 local LabeledLocaleSelector = Roact.Component:extend("LabeledLocaleSelector")
 
+function LabeledLocaleSelector:init()
+end
+
 function LabeledLocaleSelector:render()
 	return Roact.createElement("Frame", {
 			Size = UDim2.new(0, 300, 0, 25),

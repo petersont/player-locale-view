@@ -29,6 +29,7 @@ function LocaleSelector:init()
 		localeId = self.props.InitialLocaleId
 	}
 
+	self.menuContainerRef = Roact.createRef()
 	self.textBoxRef = Roact.createRef()
 end
 
@@ -69,7 +70,9 @@ function LocaleSelector:render()
 
 		LocaleNameDropdown = Roact.createElement("Frame", {
 			Size = UDim2.new(0, 160, 0, 25),
-			LayoutOrder = 0
+			LayoutOrder = 0,
+
+			[Roact.Ref] = self.menuContainerRef,
 		}, {
 			Dropdown = Roact.createElement(Dropdown, {
 				Window = self.props.Window,
