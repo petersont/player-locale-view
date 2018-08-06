@@ -5,23 +5,28 @@ local PlayerLocaleView = require(script.Parent.Components.PlayerLocaleView)
 
 local Roact = require(script.Parent.Parent.Roact)
 
-local Window = plugin:CreateDockWidgetPluginGui("LocalizationTesting", DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left))
+local Window = plugin:CreateDockWidgetPluginGui("LocalizationTesting",
+	DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left))
 Window.Title = "Localization Testing"
 
-canAccess, result = pcall(function() return game.LocalizationService.RobloxForcePlayModeRobloxLocaleId end)
+local canAccess = pcall(function() return game.LocalizationService.RobloxForcePlayModeRobloxLocaleId end)
 
 local params
 if canAccess then
-	local Localization = game:GetService("LocalizationService")
+	local LocalizationService = game:GetService("LocalizationService")
 	params = {
 		Window = Window,
-		SetRobloxLocaleId = function(localeId) game.LocalizationService.RobloxForcePlayModeRobloxLocaleId = localeId end,
-		SetGameLocaleId = function(localeId) game.LocalizationService.RobloxForcePlayModeGameLocaleId = localeId end,
-		InitialRobloxLocaleId = game.LocalizationService.RobloxForcePlayModeRobloxLocaleId,
-		InitialGameLocaleId = game.LocalizationService.RobloxForcePlayModeGameLocaleId,
+		SetRobloxLocaleId = function(localeId)
+			LocalizationService.RobloxForcePlayModeRobloxLocaleId = localeId
+		end,
+		SetGameLocaleId = function(localeId)
+			LocalizationService.RobloxForcePlayModeGameLocaleId = localeId
+		end,
+		InitialRobloxLocaleId = LocalizationService.RobloxForcePlayModeRobloxLocaleId,
+		InitialGameLocaleId = LocalizationService.RobloxForcePlayModeGameLocaleId,
 	}
 else
-    --[[DEBUG CODE]]
+	--[[DEBUG CODE]]
 	local test_gameLocaleId = "en-us"
 	local test_robloxLocaleId = "en-us"
 	params = {
@@ -37,7 +42,7 @@ else
 		InitialRobloxLocaleId = test_robloxLocaleId,
 		InitialGameLocaleId = test_gameLocaleId,
 	}
-    --[[END DEBUG CODE]]
+	--[[END DEBUG CODE]]
 end
 
 Roact.mount(Roact.createElement(PlayerLocaleView, params), Window)
