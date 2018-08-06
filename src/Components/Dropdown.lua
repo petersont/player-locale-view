@@ -3,6 +3,9 @@ local Modalifier = require(script.Parent.Modalifier)
 
 local Dropdown = Roact.Component:extend("Dropdown")
 
+local FRONT_ZINDEX = 3
+local MIDDLE_ZINDEX = 2
+
 function Dropdown:init()
 	self.state = {
 		open = false
@@ -22,7 +25,7 @@ function Dropdown:render()
 			LayoutOrder = index,
 			BorderSizePixel = 0,
 			BackgroundColor3 = Color3.new(1, 1, 1),
-			ZIndex = 3,
+			ZIndex = FRONT_ZINDEX,
 		}, {
 			Padding = Roact.createElement("UIPadding", {
 				PaddingBottom = UDim.new(0, 4),
@@ -33,7 +36,7 @@ function Dropdown:render()
 				Size = UDim2.new(1, 0, 1, 0),
 				Text = "",
 				BackgroundColor3 = Color3.new(1, 1, 1),
-				ZIndex = 3,
+				ZIndex = FRONT_ZINDEX,
 
 				[Roact.Event.Activated] = function()
 					listItem.OnActivated()
@@ -50,7 +53,7 @@ function Dropdown:render()
 					BackgroundTransparency = 1,
 					Size = UDim2.new(1, 0, 1, 0),
 					Text = listItem.Text,
-					ZIndex = 3,
+					ZIndex = FRONT_ZINDEX,
 					TextXAlignment = Enum.TextXAlignment.Left,
 				})
 			}),
@@ -63,7 +66,7 @@ function Dropdown:render()
 		visibleChildren = {
 			modalifier = Roact.createElement(Modalifier, {
 				Window = self.props.Window,
-				ZIndex = 2,
+				ZIndex = MIDDLE_ZINDEX,
 				OnClosed = function()
 					self:setState({
 						open = false
@@ -74,7 +77,7 @@ function Dropdown:render()
 						Size = UDim2.new(1, 0, 0, #(self.props.ListItems) * self.props.ListItemHeight),
 						BorderColor3 = Color3.new(0, 0, 0),
 						BackgroundColor3 = Color3.new(1, 1, 1),
-						ZIndex = 3,
+						ZIndex = FRONT_ZINDEX,
 					}, listChildren)
 				end
 			})
