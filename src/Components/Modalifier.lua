@@ -39,7 +39,6 @@ function Modalifier:render()
 				BackgroundTransparency = 1,
 				BorderSizePixel = 0,
 				Text = "",
-				ZIndex = self.props.ZIndex,
 
 				[Roact.Event.Activated] = function()
 					self.props.OnClosed()
