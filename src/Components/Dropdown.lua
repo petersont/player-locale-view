@@ -66,14 +66,16 @@ function Dropdown:render()
 		visibleChildren = {
 			modalifier = Roact.createElement(Modalifier, {
 				Window = self.props.Window,
+				InitialPosition = Vector2.new(0,0),
 				ZIndex = MIDDLE_ZINDEX,
 				OnClosed = function()
 					self:setState({
 						open = false
 					})
 				end,
-				Render = function()
+				Render = function(position)
 					return Roact.createElement("Frame", {
+						Position = UDim2.new(0, position.X, 0, position.Y),
 						Size = UDim2.new(1, 0, 0, #(self.props.ListItems) * self.props.ListItemHeight),
 						BorderColor3 = Color3.new(0, 0, 0),
 						BackgroundColor3 = Color3.new(1, 1, 1),
