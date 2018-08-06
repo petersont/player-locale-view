@@ -4,17 +4,11 @@ local Dropdown = require(script.Parent.Dropdown)
 local LocaleSelector = Roact.Component:extend("LocaleSelector")
 
 local localeInfos = {
+	{ localeId = "de-de", name = "German (Germany)" },
 	{ localeId = "en-us", name = "English (USA)" },
 	{ localeId = "es-es", name = "Spanish (Spain)" },
 	{ localeId = "fr-fr", name = "French (France)" },
-	{ localeId = "it-it", name = "Italian (Italy)" },
 	{ localeId = "pt-br", name = "Portuguese (Brazil)" },
-	{ localeId = "de-de", name = "German (Germany)" },
-	{ localeId = "ru-ru", name = "Russian (Russia)" },
-	{ localeId = "zh-cn", name = "Chinese (China)" },
-	{ localeId = "zh-tw", name = "Chinese (Taiwan)" },
-	{ localeId = "ja-jp", name = "Japanese (Japan)" },
-	{ localeId = "ko-kr", name = "Korean (South Korea)" },
 }
 
 local localeNameMap = {}
@@ -29,7 +23,6 @@ function LocaleSelector:init()
 		localeId = self.props.InitialLocaleId
 	}
 
-	self.menuContainerRef = Roact.createRef()
 	self.textBoxRef = Roact.createRef()
 end
 
@@ -70,9 +63,7 @@ function LocaleSelector:render()
 
 		LocaleNameDropdown = Roact.createElement("Frame", {
 			Size = UDim2.new(0, 160, 0, 25),
-			LayoutOrder = 0,
-
-			[Roact.Ref] = self.menuContainerRef,
+			LayoutOrder = 0
 		}, {
 			Dropdown = Roact.createElement(Dropdown, {
 				Window = self.props.Window,
